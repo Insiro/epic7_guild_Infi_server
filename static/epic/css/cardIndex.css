@@ -1,0 +1,73 @@
+.Cardname {
+    word-break: keep-all;
+  }
+  .bg-gold,
+  a.bg-gold:hover,
+  a.bg-gold:focus,
+  button.bg-gold:hover,
+  button.bg-gold:focus {
+    background-color: gold !important;
+  }
+  
+  .bg-orange2,
+  a.bg-orange2:hover,
+  a.bg-orange2:focus,
+  button.bg-orange2:hover,
+  button.bg-orange2:focus {
+    background-color: #ffb347 !important;
+  }
+  
+  .bg-pupple,
+  a.bg-pupple:hover,
+  a.bg-pupple:focus,
+  button.bg-pupple:hover,
+  button.bg-pupple:focus {
+    background-color: rgba(165, 147, 224, 0.534) !important;
+    /* background-color: #7fa593e0 !important; */
+  }
+  
+  .bg-Ocher,
+  a.bg-Ocher:hover,
+  a.bg-Ocher:focus,
+  button.bg-Ocher:hover,
+  button.bg-Ocher:focus {
+    background-color: #c68a12c4 !important;
+    /*
+      background-color: #c68a12 !important;*/
+  }
+  
+  .bg-blue2,
+  a.bg-blue2:hover,
+  a.bg-blue2:focus,
+  button.bg-blue2:hover,
+  button.bg-blue2:focus {
+    background-color: #779ecb !important;
+  }
+  
+  .bg-blue3,
+  a.bg-blue3:hover,
+  a.bg-blue3:focus,
+  button.bg-blue3:hover,
+  button.bg-blue3:focus {
+    background-color: #89cde2a1 !important;
+    /* background-color: #d4ebf2 !important;*/
+  }
+  
+  .bg-green2,
+  a.bg-green2:hover,
+  a.bg-green2:focus,
+  button.bg-green2:hover,
+  button.bg-green2:focus {
+    background-color: #77dd77 !important;
+  }
+  
+  .text-sideOcher,
+  .list-sideOcher,
+  .list-sideOcher a {
+    color: white;
+  }
+  
+  .newcolor {
+    color: #e84898 !important;
+  }
+  

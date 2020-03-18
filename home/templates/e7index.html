@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+
+        <title>무한 기사단- Home</title>
+
+        <!-- Custom fonts for this template-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" />
+        <!-- Custom styles for this template-->
+        <link href="{% static 'epic/css/sb-admin.css'%}" rel="stylesheet" />
+        <link href="{% static 'epic/css/addition.css'%}" rel="stylesheet" />
+        <link href="{% static 'epic/css/cardIndex.css'%}" rel="stylesheet" />
+    </head>
+
+    <body id="page-top">
+        <!-- dialog -->
+        <div id="BGI"></div>
+        <div class="modal dia" id="modalDialog"></div>
+        <div class="modal dia" id="Login"></div>
+        <div class="modal dia" id="regist_new"></div>
+        <nav class="fixed-top navbar navbar-expand navbar-dark bg-dark static-top">
+            <a class="navbar-brand mr-1" href=".">무한기사단</a>
+            <!-- Navbar Search -->
+            <form action="search" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="kq" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Navbar -->
+            <div class="mr-sm-2" id="Nav"></div>
+        </nav>
+
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <div class="sidebar d-none d-md-inline-block " id="sidebar"></div>
+
+            <div id="content-wrapper">
+                <div class="container-fluid">
+                    <!-- Breadcrumbs-->
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="#">메인 페이지</a>
+                        </li>
+                        <li class="breadcrumb-item active">Overview</li>
+                    </ol>
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Notics
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <!--onclick="viewDialog('notic','{{ not.id }}' )"-->
+                                {%for not in notics %}
+                                <li onclick="viewDialog('notic','{{ not.id }}')">
+                                    <a href="javascript:;">{{ not.name }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Icon Cards-->
+                    <div class="row">
+                        <div class="col-xl-3 col-sm-6 mb-3">
+                            <div class="card text-white bg-pupple o-hidden h-100">
+                                <div class="card-body">
+                                    <a class=" text-white clearfix small z-1" href="https://insiro.me/epic/tips">
+                                        <div class="card-body-icon"></div>
+                                        <div class="mr-5 Cardname">전체 공략</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {%for imp in hints %}
+                        <div class="col-xl-3 col-sm-6 mb-3">
+                            <div class="card text-white bg-pupple o-hidden h-100">
+                                <div class="card-body">
+                                    <a class=" text-white clearfix small z-1" href="javascript:;" onClick="viewDialog('tips','{{ imp.id }}' )">
+                                        <div class="card-body-icon"></div>
+                                        <div class="mr-5 Cardname">{{ imp.name }}</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- /.container-fluid -->
+
+                    <!-- Sticky Footer -->
+                    <footer class="sticky-footer">
+                        <div id="footer" class="container my-auto"></div>
+                    </footer>
+                </div>
+                <!-- /.content-wrapper -->
+            </div>
+            <!-- /#wrapper -->
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
+        </div>
+        <!-- Bootstrap core JavaScript-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Core plugin JavaScript-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+        <!-- Page level plugin JavaScript-->
+        <!-- <script src="/static/epic/vendor/datatables/jquery.dataTables.js"></script> -->
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+        <script src="/static/epic/js/authorize.js"></script>
+        <script src="/static/epic/js/addition.js"></script>
+        <script>
+            $(function() {
+                $("#footer").load("/static/epic/extention_html/footer.html");
+                $("#Nav").load("/static/epic/extention_html/navbar.html", () => {
+                    reloadLoginState(false);
+                });
+                $("#sidebar").load("/static/epic/extention_html/sidebar.html", function() {
+                    document.getElementById("dash_lit").className += " active";
+                });
+                $("#regist_new").load("/static/epic/extention_html/singUpModal.html");
+                $("#modalDialog").load("/static/epic/extention_html/modal_dialog.html");
+                $("#Login").load("/static/epic/extention_html/log-inModal.html");
+            });
+            function writeList() {
+                if (arguments[1].length == 0 || arguments.length < 1) document.getElementById(theGame + "_list").innerHTML += "<li> No data </li>";
+                else {
+                    for (var i = 0; i < arguments[1].length; i++) {
+                        document.getElementById(arguments[0] + "_list").innerHTML +=
+                            "<li ><a onclick='viewDialog(\"" +
+                            arguments[1][i]._id +
+                            '", "' +
+                            arguments[0] +
+                            "\")' href='javascript:;'>" +
+                            (arguments[1][i].name.length > 25 ? arguments[1][i].name.substring(0, 23) + "..." : arguments[1][i].name) +
+                            "</a></li>";
+                    }
+                }
+            }
+        </script>
+        {% if rev %}
+        <script>
+            alert("Require Sign-In");
+        </script>
+        {% endif%}
+    </body>
+</html>

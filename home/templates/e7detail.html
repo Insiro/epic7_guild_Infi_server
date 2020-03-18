@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>무한 기사단</title>
+
+        <!-- Custom fonts for this template-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" />
+        <link href="{% static 'epic/css/sb-admin.css'%}" rel="stylesheet" />
+        <link href="{% static 'epic/css/addition.css'%}" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+    </head>
+
+    <body id="page-top">
+        <!-- dialog -->
+        <div class="modal dia" id="regist_new"></div>
+        <div class="modal dia" id="modalDialog"></div>
+        <div class="modal dia" id="Login"></div>
+        <nav class="fixed-top navbar navbar-expand navbar-dark bg-dark static-top">
+            <a class="navbar-brand mr-1" href=".">무한기사단</a>
+
+            <!-- Navbar Search -->
+            <form action="search" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="kq" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- Navbar -->
+            <div id="Nav"></div>
+        </nav>
+
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <div class="sidebar d-none d-md-inline-block " id="sidebar"></div>
+
+            <div id="content-wrapper">
+                <div class="container-fluid">
+                    <!-- Breadcrumbs-->
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index">메인 페이지</a>
+                        </li>
+                        <li class="breadcrumb-item active" id="page_name">
+                            {{table}}
+                        </li>
+                    </ol>
+
+                    <!-- DataTables -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="contact-text">
+                                <h2 id="title" style="display: inline-block;"></h2>
+                                <h6 id="writer" style="display: inline-block;"></h6>
+                                <p id="content">there's no Contents</p>
+                            </div>
+                        </div>
+                        <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+                <!-- Sticky Footer -->
+                <footer class="sticky-footer">
+                    <div id="footer" class="container my-auto"></div>
+                </footer>
+            </div>
+            <!-- /.content-wrapper -->
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/epic/js/sb-admin.min.js"></script>
+        <script src="/static/epic/js/authorize.js"></script>
+        <script src="/static/epic/js/addition.js"></script>
+        <script>
+            $(function() {
+                $("#regist_new").load("/static/epic/extention_html/singUpModal.html");
+                $("#Login").load("/static/epic/extention_html/log-inModal.html");
+                $("#footer").load("/static/epic/extention_html/footer.html");
+                $("#Nav").load("/static/epic/extention_html/navbar.html", () => {
+                    reloadLoginState(false);
+                });
+                $("#sidebar").load("/static/epic/extention_html/sidebar.html", function() {
+                    document.getElementById("Notic_lit").className += " active";
+                });
+                $("#modalDialog").load("/static/epic/extention_html/modal_dialog.html");
+            });
+            let req = new XMLHttpRequest();
+            req.open("GET", "info?table={{table}}&id={{id}}");
+            req.addEventListener("load", function() {
+                if (req.status != 200) {
+                    console.log("404");
+                    return;
+                }
+                var counter = 0;
+                let data = JSON.parse(req.responseText);
+                let innerContents = "";
+                document.getElementById("title").innerHTML = data.name;
+                document.getElementById("writer").innerText += "(" + data.writer + ")";
+                if (data.link != null) {
+                    counter++;
+                    innerContents += '<a href="' + data.link + '">';
+                    innerContents += data.linkName != null ? data.linkName : "link";
+                    innerContents += "</a><br>";
+                }
+                if (data.contents != null) {
+                    counter++;
+                    innerContents += data.contents
+                        .split("\n")
+                        .join("<br>")
+                        .split("  ")
+                        .join("&nbsp;&nbsp;");
+                } else if (data.memo != null) {
+                    counter++;
+                    innerContents += data.memo
+                        .split("\n")
+                        .join("<br>")
+                        .split(" ")
+                        .join("&nbsp;");
+                }
+                if (data.image != null && data.image != "") {
+                    counter++;
+                    innerContents += "<img src='https://insiro.me/media/" + data.image + "'>";
+                }
+                if (data.imageLink != null && data.imageLink != "") {
+                    counter++;
+                    innerContents += "<img src='" + data.imageLink + "'>";
+                }
+                if (innerContents != "") {
+                    document.getElementById("content").innerHTML = innerContents;
+                }
+            });
+            req.send(null);
+        </script>
+    </body>
+</html>

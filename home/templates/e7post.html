@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>무한 기사단 Post</title>
+
+        <!-- Custom fonts for this template-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" />
+        <link href="{% static 'epic/css/sb-admin.css'%}" rel="stylesheet" />
+        <link href="{% static 'epic/css/addition.css'%}" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+    </head>
+
+    <body id="page-top">
+        <!-- dialog -->
+        <div class="modal dia" id="regist_new"></div>
+        <div class="modal dia" id="modalDialog"></div>
+        <div class="modal dia" id="Login"></div>
+        <nav class="fixed-top navbar navbar-expand navbar-dark bg-dark static-top">
+            <a class="navbar-brand mr-1" href=".">무한기사단</a>
+
+            <!-- Navbar Search -->
+            <form action="search" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="kq" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- Navbar -->
+            <div id="Nav"></div>
+        </nav>
+
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <div class="sidebar d-none d-md-inline-block " id="sidebar"></div>
+
+            <div id="content-wrapper">
+                <div class="container-fluid">
+                    <!-- Breadcrumbs-->
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index">메인 페이지</a>
+                        </li>
+                        <li class="breadcrumb-item active" id="page_name">new Post</li>
+                    </ol>
+
+                    <!-- DataTables -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="contact-text">
+                                <h2>new Post</h2>
+                                <form action="" class="contact-form">
+                                    <div class="form-group">
+                                        <label for="title">title</label>
+                                        <input class="form-control" id="title" type="text" name="title" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="category">category</label>
+                                        <select class="selectpicker my-1 mr-sm-2" id="CharactorSelect">
+                                            <option value="" disable selected>Choose...</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="writer">writer</label>
+                                        <input class="form-control" id="writer" type="text" name="writer" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>add : </label>
+                                        <button class="btn">Img file</button>
+                                        <button class="btn">Img url</button>
+                                        <button class="btn">Link</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <babel for="content">content</babel>
+                                        <textarea id="content" class="form-control" placeholder="content"></textarea>
+                                    </div>
+                                    <button class="btn site-btn">upload</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div> -->
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+                <!-- Sticky Footer -->
+                <footer class="sticky-footer">
+                    <div id="footer" class="container my-auto"></div>
+                </footer>
+            </div>
+            <!-- /.content-wrapper -->
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="/static/epic/js/sb-admin.min.js"></script>
+        <script src="/static/epic/js/authorize.js"></script>
+        <script src="/static/epic/js/addition.js"></script>
+        <script>
+            $(function() {
+                $("#regist_new").load("/static/epic/extention_html/singUpModal.html");
+                $("#Login").load("/static/epic/extention_html/log-inModal.html");
+                $("#footer").load("/static/epic/extention_html/footer.html");
+                $("#Nav").load("/static/epic/extention_html/navbar.html", () => {
+                    reloadLoginState(false);
+                });
+                $("#sidebar").load("/static/epic/extention_html/sidebar.html", function() {
+                    document.getElementById("newPost").className += " active";
+                });
+                $("#modalDialog").load("/static/epic/extention_html/modal_dialog.html");
+            });
+            var tableName;
+        </script>
+    </body>
+</html>

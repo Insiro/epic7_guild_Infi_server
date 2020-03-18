@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>무한기사단 Search</title>
+
+        <!-- Custom styles for this template-->
+        <link href="{% static 'epic/css/sb-admin.css'%}" rel="stylesheet" />
+        <link href="{% static 'epic/css/addition.css'%}" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+    </head>
+
+    <body id="page-top">
+        <!-- dialog -->
+        <div class="modal dia" id="regist_new"></div>
+        <div class="modal dia" id="Login"></div>
+        <div class="modal dia" id="modalDialog"></div>
+        <nav class="fixed-top navbar navbar-expand navbar-dark bg-dark static-top">
+            <a class="navbar-brand mr-1" href="./">무한기사단</a>
+
+            <!-- Navbar Search -->
+            <form action="search" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="kq" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- Navbar -->
+            <div class="navbar-nav navbar-right" id="Nav"></div>
+        </nav>
+
+        <div id="wrapper">
+            <!-- Sidebar -->
+
+            <div class="sidebar d-none d-md-inline-block navbar-nav" id="sidebar"></div>
+
+            <div id="content-wrapper">
+                <div class="container-fluid">
+                    <ol class="breadcrumb" id="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index">메인 페이지</a>
+                        </li>
+                        <li class="breadcrumb-item active">Search {{ kq }}</li>
+                    </ol>
+
+                    <!-- Page Content -->
+                    <hr />
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h3 id="table_name">Search {{ kq }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body">
+                                <form class="d-inline-block d-md-none" action="search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="kq" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>writer</th>
+                                            <th>title</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="sc_list">
+                                        {% for data in notic%}
+                                        <tr onclick="viewDialog('notic','{{ data.id }}')">
+                                            <td>notic {{data.id}}</td>
+                                            <td>{{data.writer}}</td>
+                                            <td>{{data.name}}</td>
+                                        </tr>
+                                        {% endfor %} {% for data in tips%}
+                                        <tr onclick="viewDialog('tips','{{ data.id }}')">
+                                            <td>tips {{data.id}}</td>
+                                            <td>{{data.writer}}</td>
+                                            <td>{{data.name}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+                <!-- Sticky Footer -->
+                <footer class="sticky-footer">
+                    <div id="footer" class="container my-auto"></div>
+                </footer>
+            </div>
+            <!-- /.content-wrapper -->
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="/static/epic/js/sb-admin.min.js"></script>
+        <script src="/static/epic/js/authorize.js"></script>
+        <script src="/static/epic/js/addition.js"></script>
+        <script>
+            $(function() {
+                $("#regist_new").load("/static/epic/extention_html/singUpModal.html");
+                $("#footer").load("/static/epic/extention_html/footer.html");
+                $("#Nav").load("/static/epic/extention_html/navbar.html", () => {
+                    reloadLoginState(false);
+                });
+                $("#sidebar").load("/static/epic/extention_html/sidebar.html");
+                $("#modalDialog").load("/static/epic/extention_html/modal_dialog.html");
+                $("#Login").load("/static/epic/extention_html/log-inModal.html");
+            });
+        </script>
+    </body>
+</html>
