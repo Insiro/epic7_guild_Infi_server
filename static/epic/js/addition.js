@@ -24,7 +24,7 @@ function gotoPost() {
             json = JSON.parse(loginXhttpRequest.responseText);
             isAuthorized = json.result;
             if (isAuthorized == true) {
-                location.href = "/epic/post";
+                location.href = "/post";
             } else {
                 alert("Require Sign-In");
             }
@@ -79,7 +79,7 @@ function viewDialog() {
             detailBtn.addEventListener("click", function() {
                 go_detail(id, table);
             });
-            content.innerHTML = "<a href='javascript:;' onclick=\"copyText('insiro.me/epic/detail?table=" + table + "&id=" + id + "')\"><small>주소 복사</small></a>";
+            content.innerHTML = "<a href='javascript:;' onclick=\"copyText('epic.insiro.me/detail?table=" + table + "&id=" + id + "')\"><small>주소 복사</small></a>";
 
             content.innerHTML += "<table id='diatable'></table>";
             var data = JSON.parse(req.responseText);
