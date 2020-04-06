@@ -66,3 +66,11 @@ function getSkillRank() {
     });
     req.send(null);
 }
+
+function getEHP(){
+	let result = document.getElementById("EHP_result");
+	let e_hp = document.getElementById("E_hp");
+	let e_deff = document.getElementById("E_deff");
+	let re = e_hp.value*(e_deff.value / 300 + 1);
+	result.innerText = "결과 : "+re.toFixed(3)
+}

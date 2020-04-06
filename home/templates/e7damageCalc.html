@@ -8,7 +8,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <title>무한 기사단 계수, 계산기</title>
+        <title>무한 기사단 - 계산기</title>
 
         <!-- Custom fonts for this template-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" />
@@ -53,17 +53,41 @@
                         <li class="breadcrumb-item">
                             <a href="index">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item active" id="page_name">데미지 계산기</li>
+                        <li class="breadcrumb-item active" id="page_name">계산기</li>
                     </ol>
                     <!-- Calcurator -->
+		    <div class="card mb-3">
+			    <div class="card-header">EHP 계산기 <sub>생명력과 방어력의 방어 효율을 계산합니다</sub></div>
+			    <div class="card-body">
+				    <div class="contact-text">
+				    <form>
+					    <div class="row CalForm">
+						    <div class="form-group">
+							    <label class="calcLabel">체력</label>
+							    <input id="E_hp" type="number" value="0"/>
+						    </div>
+						    <div class="form-group">
+							    <label class="calcLabel">방어</label>
+							    <input id="E_deff" type="number" value="0"/>	    
+						   </div>
+					     </div>
+					     <div class="form-group">
+						    <input class="calcFormBtn btn"id="EHP_Calc" type="button" value="계산" onclick="getEHP()"/>			    
+						    <div id ="EHP_result">결과 : </div>
+					    </div>
+				    </form>
+
+				    </div>
+			    </div>
+		    </div>
                     <div class="card mb-3">
                         <div class="card-header">
-                            계산기
+                            데미지 계산기
                         </div>
                         <div class="card-body">
                             <div class="contact-text">
                                 <form>
-                                    <div class="row" id="CalForm">
+                                    <div class="row CalForm">
                                         <div class="form-group">
                                             <label class="calcLabel">공격력</label>
                                             <input id="attack" type="number" name="attack" maxlength="4" value="0" />
