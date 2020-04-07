@@ -123,3 +123,8 @@ body {
 .card-header > sub{
 	margin-left : 20px;
 }
+
+.hideArrowBtn{
+  height: 10px;
+  margin : 5px;
+}

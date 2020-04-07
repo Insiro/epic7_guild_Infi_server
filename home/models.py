@@ -64,6 +64,7 @@ class Heros(models.Model):
 class BotSkills(models.Model):
     Skill = models.CharField(max_length=30)
     target = models.CharField(max_length=10, null=True, blank=True)
+    deiscribe = models.CharField(max_length=40, null=True, blank=True)
 
     def __str__(self):
         return self.Skill

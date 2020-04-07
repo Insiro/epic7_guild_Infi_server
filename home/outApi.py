@@ -29,5 +29,5 @@ def getBotSkills(request):
     data = list()
 
     for item in Emodels.BotSkills.objects.all():
-        data.append({"skill": item.Skill, "target": item.target})
+        data.append({"skill": item.Skill, "target": item.target,"how":item.deiscribe})
     return JsonResponse({"data": data}, json_dumps_params={"ensure_ascii": False})

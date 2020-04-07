@@ -1,15 +1,16 @@
 .calcFormBtn {
     margin: 10px 15px 10px 15px;
     padding: 0px 15px 0px 15px;
-  }
-  .CalForm > div > input {
+}
+
+.CalForm > div > input {
     max-width: 100px;
     text-align: center;
     border-radius: 10px !important;
-  }
-  .calcLabel {
+}
+
+.calcLabel {
     margin-left: 10px !important;
     width: 100px !important;
     text-align: right !important;
-  }
-
+}
