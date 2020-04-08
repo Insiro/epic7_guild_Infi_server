@@ -9,6 +9,7 @@ import home.models as Emodels
 
 def getNotic(request):
     data = model_to_dict(Emodels.notic.objects.get(id=1))
+    data['image'] =str( data['image'])
     return JsonResponse(data, json_dumps_params={"ensure_ascii": False})
 
 
@@ -27,7 +28,6 @@ def getTip(request):
 
 def getBotSkills(request):
     data = list()
-
     for item in Emodels.BotSkills.objects.all():
         data.append({"skill": item.Skill, "target": item.target,"how":item.deiscribe})
     return JsonResponse({"data": data}, json_dumps_params={"ensure_ascii": False})
