@@ -11,6 +11,8 @@ var elementWinInput = document.getElementById("elementWin");
 var calcedDamageOut = document.getElementById("calcedDamage");
 var rankViewer = document.getElementById("RankList");
 var isSpeed = document.getElementById("isSpeed");
+let choser = document.getElementById("CharactorSelect");
+
 function dropOut0(value) {
     if (value < 0) return 0;
     return value;
@@ -35,11 +37,34 @@ function calculate() {
     calcedDamageOut.innerText = parseInt(damage * 100) / 100;
 }
 
+function updateChoser() {
+    req = new XMLHttpRequest()
+    req.open("GET", "https://api.epicsevendb.com/hero")
+    req.addEventListener("load", function () {
+        if (req.status != 200) {
+            console.log("failed to load");
+            return;
+        }
+        console.log("load success!!");
+        json = JSON.parse(req.responseText);
+        data = json["results"].sort(function (a, b) { return a._id - b._id; });
+        for (i in data) {
+            dat = data[i]
+            thumnail = dat.hasOwnProperty("assets") ? dat["assets"]["icon"] : "";
+            newOptions = "<option data-tokens=" + dat["_id"] + " value=" + dat["_id"] + " data-thumbnail=\'" + thumnail + "\'>" + dat["name"] + "</option>";
+            $('#CharactorSelect').append(newOptions);
+        }
+        $('#CharactorSelect').selectpicker('refresh')
+    });
+    req.send(null);
+}
+
+
 function getSkillRank() {
     selectedValue =
         charactorSelecter.options[charactorSelecter.selectedIndex].value;
     var req = new XMLHttpRequest();
-    req.open("GET", "https://api.epicsevendb.com/api/hero/" + selectedValue);
+    req.open("GET", "https://api.epicsevendb.com/hero/" + selectedValue);
     req.addEventListener("load", function () {
         if (req.status != 200) {
             console.log("failed to load");
@@ -48,18 +73,24 @@ function getSkillRank() {
         json = JSON.parse(req.responseText);
         data = json["results"][0]["skills"];
         rankViewer.innerHTML = "";
-        for (i = 0; i < data.length; i++) {
+        for (i in data) {
             str = "<td>";
-            validSoulBurn = parseFloat(data[i].soulBurn) != 0;
+            validSoulBurn = data[i].hasOwnProperty('soul_requirement');
             damageModifiers = data[i].damageModifiers;
-            for (DM in damageModifiers) {
-                dm = damageModifiers[DM];
-                str += dm.name + " : " + String(dm.value);
-                if (validSoulBurn == true) {
-                    str += "<small> ( " + String(dm.soulburn) + " )</small>";
-                }
-                str += "<br>";
+            str += "att_rate  : " + data[i].att_rate
+            if (validSoulBurn) {
+                str += "<small> ( " + String(data[i].soul_att_rate) + " )</small>";
             }
+            str += "<br>pow : " + data[i].pow + "<br>";
+
+            // for (DM in damageModifiers) {
+            //     dm = damageModifiers[DM];
+            //     str += dm.name + " : " + String(dm.value);
+            //     if (validSoulBurn == true) {
+            //         str += "<small> ( " + String(dm.soulburn) + " )</small>";
+            //     }
+            //     str += "<br>";
+            // }
             str += "</td>";
             rankViewer.innerHTML += str;
         }
@@ -74,6 +105,7 @@ function getEHP() {
     let re = e_hp.value * (e_deff.value / 300 + 1);
     result.innerText = "결과 : " + re.toFixed(3)
 }
+
 function hideCard(v, name) {
     if (name == "cost") {
         if (v) {
@@ -112,3 +144,6 @@ function hideCard(v, name) {
         }
     }
 }
+
+
+

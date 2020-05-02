@@ -170,13 +170,9 @@
                         </div>
                         <div class="card-body" id='costBody'>
                             <form class="form-inline">
-                                <select class="selectpicker  my-1 mr-sm-2" data-size="5" data-live-search="true"
+                                <select class="selectpicker  my-1 mr-sm-2 " data-size="5" data-live-search="true"
                                     id="CharactorSelect">
                                     <option value="" disable selected>Charactor Choose...</option>
-                                    {% for hero in heros %}
-                                    <option data-tokens="{{ hero.SearchKey }}" value="{{ hero.SearchKey }}">
-                                        {{ hero.name }}</option>
-                                    {% endfor %}
                                 </select>
                                 &nbsp;
                                 <button type="button" onclick="getSkillRank()" class="btn btn-primary my-1">
@@ -243,6 +239,9 @@
                     reloadLoginState(false);
                 }
             );
+            updateChoser();
+
+
         </script>
     </body>
 

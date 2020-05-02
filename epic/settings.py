@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ["epic.insiro.me", "insiro.me"]
 # Application definition
 
 INSTALLED_APPS = [
-    "django_crontab",
     "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -57,9 +56,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
 ]
 
-CRONJOBS = [
-    ("5 10 * * 5", "home.DPparser.parse"),
-]
 
 CORS_ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
