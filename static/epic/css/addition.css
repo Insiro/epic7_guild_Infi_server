@@ -1,76 +1,78 @@
 body {
-  background: linear-gradient(rgba(255, 255, 255, 0), rgba(256, 256, 255, 1)),
-    url("https://d3kxs6kpbh59hp.cloudfront.net/community_admin/2019120505/epicseven_bg_%3F%3F%3F_1575523097.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  padding-top: 3.5rem !important;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(256, 256, 255, 1)), url("https://d3kxs6kpbh59hp.cloudfront.net/community_admin/2019120505/epicseven_bg_%3F%3F%3F_1575523097.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-top: 3.5rem !important;
+}
+.navbar{
+    background: linear-gradient(to bottom,  rgba(0,0,0,0.6) 9%, rgba(0,0,0,0)); 
 }
 #Nav .nav-item a:active,
 #Nav .nav-item a:link,
 #Nav .nav-item a:visited,
 #Nav .nav-item a:hover {
-  color: #a593e0 !important;
+    color: #a593e0 !important;
 }
 .navbar-nav .nav-item.active .nav-link {
-  color: #a593e0;
+    color: #a593e0;
 }
 
 .navbar-brand {
-  color: #a593e0 !important;
+    color: #a593e0 !important;
 }
 
 .navbar-nav .nav-item {
-  margin: 5px;
+    margin: 5px;
 }
 
 .nav-item {
-  color: #a593e0;
+    color: #a593e0;
 }
 
 .list-game {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 .side-item {
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 30px;
 }
 .sticky-footer {
-  background-color: rgba(0, 0, 0, 0) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
 }
 .list-white a {
-  color: white;
+    color: white;
 }
 
 .text-sideorange,
 .list-sideorange,
 .list-sideorange a {
-  color: ivory;
+    color: ivory;
 }
 
 .list-black a {
-  color: black;
+    color: black;
 }
 
 .list-red a {
-  color: red;
+    color: red;
 }
 
 .list-grey a {
-  color: #494f54;
+    color: #494f54;
 }
 
 .text-sidegold,
 .list-sidegold,
 .list-sidegold a {
-  color: #545245 !important;
+    color: #545245 !important;
 }
 
 .list-game li a {
-  color: white;
+    color: white;
 }
 
 .list-game a:hover {
-  color: blue;
+    color: blue;
 }
 
 .btn:not(:disabled):not(.disabled):active,
@@ -80,51 +82,68 @@ body {
 .btn:disabled,
 .btn:hover,
 .btn {
-  color: #fff;
-  background-color: #a593e0;
-  border-color: #9d83f1;
+    color: #fff;
+    background-color: #a593e0;
+    border-color: #9d83f1;
 }
 
 .btn:focus,
 .btn.focus {
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
-  box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
 }
 
 .btn:not(:disabled):not(.disabled):active:focus,
 .btn:not(:disabled):not(.disabled).active:focus,
 .show > .btn.dropdown-toggle:focus {
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
-  box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5);
 }
 .sidebar {
-  background-color: rgba(0, 0, 0, 0) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
 }
 .sideMenu {
-  position: fixed !important;
+    position: fixed !important;
 }
 
 @media (min-width: 720px) {
-  #content-wrapper {
-    margin-left: 2.4rem !important;
-  }
+    #content-wrapper {
+        margin-left: 2.4rem !important;
+    }
 }
 
 .dropdown-item.active,
 .dropdown-item:active {
-  color: #fff;
-  text-decoration: none;
-  background-color: #a593e0;
+    color: #fff;
+    text-decoration: none;
+    background-color: #a593e0;
 }
-.modalImg{
-  max-width: 450px;
-}
-
-.card-header > sub{
-	margin-left : 20px;
+.modalImg {
+    max-width: 450px;
 }
 
-.hideArrowBtn{
-  height: 10px;
-  margin : 5px;
+.card-header > sub {
+    margin-left: 20px;
+}
+
+.hideArrowBtn {
+    height: 10px;
+    margin: 5px;
+}
+.scoreRe {
+    vertical-align: bottom;
+}
+#resultBlock {
+    background-color: mediumorchid !important;
+    color: whitesmoke !important;
+}
+/* #resultBlock > span {
+    color: black !important;
+} */
+.btn-2 {
+    background-color: #87cefa !important;
+}
+.breadcrumb
+{
+    background: linear-gradient(to right, rgb(255,255,255), rgba(255,255,255,0) 70%);
 }
