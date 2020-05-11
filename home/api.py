@@ -22,10 +22,10 @@ def info(request):
     elif table == "tips":
         data = model_to_dict(Emodels.tips.objects.get(id=int(id)))
         print(data)
-        data["image"] = str(data["image"])
         # dataDic["img"] = str(list(model_to_dict(i)for i in img_))
     else:
         data = get_object_or_404(Emodels.tips, pk=0)
+    data["image"] = str(data["image"])
     return JsonResponse(data, json_dumps_params={"ensure_ascii": False})
 
 
@@ -122,4 +122,3 @@ def getKakao(request):
     return JsonResponse(
         {"con": "87e0df88cc4b2f3e2191d86119d5ff15"}, content_type="application/json"
     )
-
