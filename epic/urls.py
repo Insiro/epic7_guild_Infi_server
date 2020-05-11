@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
+    path("kakao", RedirectView.as_view(url="https://open.kakao.com/o/g16VJb8")),
+    path("favicon.ico", RedirectView.as_view(url="/static/global/favicon.ico")),
+    path("home.png", RedirectView.as_view(url="/static/global/home.png")),
+    path("robots.txt", RedirectView.as_view(url="/static/global/robots.txt")),
     path("admin/", admin.site.urls),
     path("", include("home.urls")),
 ]
