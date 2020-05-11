@@ -1,15 +1,19 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
-        <meta name="author" content="" />
+        <meta name="author" content="Insiro" />
         <meta http-equiv="Access-Control-Allow-Origin" content="*" />
-
-        <title>무한 기사단- Home</title>
+        <meta property="og:title" content="무한 기사단" />
+        <meta property="og:site_name" content="무한 기사단" />
+        <meta property="og:description" content="에픽 세븐 한국서버 무한기사단의 홈페이지 입니다" />
+        <meta property="og:image" content="https://epic.insiro.me/home.png" />
+        <title>무한 기사단 | Home</title>
 
         <!-- Custom fonts for this template-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" />
@@ -25,12 +29,13 @@
         <div class="modal dia" id="modalDialog"></div>
         <div class="modal dia" id="Login"></div>
         <div class="modal dia" id="regist_new"></div>
-        <nav class="fixed-top navbar navbar-expand navbar-dark bg-dark static-top">
+        <nav class="fixed-top navbar navbar-expand static-top">
             <a class="navbar-brand mr-1" href=".">무한기사단</a>
             <!-- Navbar Search -->
             <form action="search" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="kq" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <input type="text" class="form-control" name="kq" placeholder="Search for..." aria-label="Search"
+                        aria-describedby="basic-addon2" />
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">
                             <i class="fas fa-search"></i>
@@ -45,7 +50,7 @@
 
         <div id="wrapper">
             <!-- Sidebar -->
-            <div class="sidebar d-none d-md-inline-block " id="sidebar"></div>
+            <div class="sidebar d-none d-md-inline-block" id="sidebar"></div>
 
             <div id="content-wrapper">
                 <div class="container-fluid">
@@ -77,7 +82,8 @@
                         <div class="col-xl-3 col-sm-6 mb-3">
                             <div class="card text-white bg-pupple o-hidden h-100">
                                 <div class="card-body">
-                                    <a class=" text-white clearfix small z-1" href="javascript:;" onClick="viewDialog('tips','{{ imp.id }}' )">
+                                    <a class="text-white clearfix small z-1" href="javascript:;"
+                                        onClick="viewDialog('tips','{{ imp.id }}' )">
                                         <div class="card-body-icon"></div>
                                         <div class="mr-5 Cardname">{{ imp.name }}</div>
                                     </a>
@@ -97,10 +103,7 @@
             </div>
             <!-- /#wrapper -->
 
-            <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
+
         </div>
         <!-- Bootstrap core JavaScript-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -110,17 +113,16 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
         <!-- Page level plugin JavaScript-->
-        <!-- <script src="/static/epic/vendor/datatables/jquery.dataTables.js"></script> -->
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
         <script src="/static/epic/js/authorize.js"></script>
         <script src="/static/epic/js/addition.js"></script>
         <script>
-            $(function() {
+            $(function () {
                 $("#footer").load("/static/epic/extention_html/footer.html");
                 $("#Nav").load("/static/epic/extention_html/navbar.html", () => {
                     reloadLoginState(false);
                 });
-                $("#sidebar").load("/static/epic/extention_html/sidebar.html", function() {
+                $("#sidebar").load("/static/epic/extention_html/sidebar.html", function () {
                     document.getElementById("dash_lit").className += " active";
                 });
                 $("#regist_new").load("/static/epic/extention_html/singUpModal.html");
@@ -149,4 +151,5 @@
         </script>
         {% endif%}
     </body>
+
 </html>

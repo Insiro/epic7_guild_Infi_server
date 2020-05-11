@@ -1,14 +1,17 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta property="og.image" content="epic.insiro.me/home/png" />
+        <meta property="og:site_name" content="무한 기사단" />
 
-        <title>무한기사단 Search</title>
+        <title>무한기사단 | Search</title>
 
         <!-- Custom styles for this template-->
         <link href="{% static 'epic/css/sb-admin.css'%}" rel="stylesheet" />
@@ -21,13 +24,14 @@
         <div class="modal dia" id="regist_new"></div>
         <div class="modal dia" id="Login"></div>
         <div class="modal dia" id="modalDialog"></div>
-        <nav class="fixed-top navbar navbar-expand navbar-dark bg-dark static-top">
+        <nav class="fixed-top navbar navbar-expand static-top">
             <a class="navbar-brand mr-1" href="./">무한기사단</a>
 
             <!-- Navbar Search -->
             <form action="search" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="kq" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <input type="text" class="form-control" name="kq" placeholder="Search for..." aria-label="Search"
+                        aria-describedby="basic-addon2" />
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">
                             <i class="fas fa-search"></i>
@@ -63,7 +67,8 @@
                             <div class="card-body">
                                 <form class="d-inline-block d-md-none" action="search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="kq" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                                        <input type="text" class="form-control" name="kq" placeholder="Search for..."
+                                            aria-label="Search" aria-describedby="basic-addon2" />
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="fas fa-search"></i>
@@ -112,10 +117,6 @@
         </div>
         <!-- /#wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
@@ -123,7 +124,7 @@
         <script src="/static/epic/js/authorize.js"></script>
         <script src="/static/epic/js/addition.js"></script>
         <script>
-            $(function() {
+            $(function () {
                 $("#regist_new").load("/static/epic/extention_html/singUpModal.html");
                 $("#footer").load("/static/epic/extention_html/footer.html");
                 $("#Nav").load("/static/epic/extention_html/navbar.html", () => {
@@ -135,4 +136,5 @@
             });
         </script>
     </body>
+
 </html>
