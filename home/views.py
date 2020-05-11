@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
+from django.forms.models import model_to_dict
 from django.core.exceptions import PermissionDenied
 
 import home.models as Emodels
@@ -30,7 +31,20 @@ def tiplit(request):
 
 
 def guildPR(request):
-    return render(request, "e7PR.html")
+    data = (
+        model_to_dict(Emodels.notic.objects.get(id=1))["contents"]
+        .replace("기사단 소개", " ○ 기사단 소개")
+        .replace("기사단소개", " ○ 기사단소개")
+        .replace("가입 조건", "○ 가입 조건")
+        .replace("가입조건", "○ 가입조건")
+        .replace("강퇴 조건", " ○ 강퇴 조건")
+        .replace("강퇴조건", " ○ 강퇴조건")
+    )
+    return render(request, "e7PR.html", {"con": data})
+
+
+def Escore(request):
+    return render(request, "e7Equipment.html")
 
 
 def search(request):
@@ -59,8 +73,6 @@ def notic(request):
 
 
 def post(request):
-    if not request.session.get("isSigned"):
-        return redirect(revert)
     return render(request, "e7post.html")
 
 

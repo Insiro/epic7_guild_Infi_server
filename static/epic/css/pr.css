@@ -1,0 +1,25 @@
+body {
+    text-align: center;
+}
+
+h3 {
+    color: white;
+}
+
+img {
+    max-width: 100%;
+}
+
+.subcon {
+    align-items: center;
+}
+.card-text {
+    /* background-color: #3c459465; */
+    background: linear-gradient(to right, #3c459465, rgba(0,0,0,0));
+    color: wheat;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding-left:3rem;
+}

@@ -13,6 +13,7 @@ urlpatterns = [
     path("damage", views.damageCalc),
     path("detail", views.detail),
     path("about", views.guildPR),
+    path("e-score", views.Escore),
     # epic7API
     path("info", api.info),
     path("api/authorize", api.authorize),
@@ -25,4 +26,3 @@ urlpatterns = [
     path("api/getBotSkills", outApi.getBotSkills),
     path("api/getKakao", api.getKakao),
 ]
-
