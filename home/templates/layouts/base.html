@@ -24,8 +24,8 @@
 
     <body id="page-top">
         <!-- dialog -->
-        <div class="modal dia" id="regist_new"> </div>
-        <div class="modal dia" id="modalDialog"></div>
+        <div class="modal dia" id="regist_new">{% include 'includes/singUpModal.html' %}</div>
+        <div class="modal dia" id="modalDialog">{% include 'includes/modal_dialog.html' %}</div>
         <div class="modal dia" id="Login">{% include 'includes/log_inModal.html' %}</div>
 
         <nav class="fixed-top navbar navbar-expand static-top">
@@ -72,21 +72,15 @@
 
             </div>
             <!-- /#wrapper -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
             <script src="/static/epic/js/authorize.js"></script>
             <script src="/static/epic/js/sb-admin.min.js"></script>
             <script src="/static/epic/js/addition.js"></script>
             <script>
-                $(function () {
-                    $("#regist_new").load("/static/epic/extention_html/singUpModal.html");
-                    $("#modalDialog").load("/static/epic/extention_html/modal_dialog.html");
-                    $("#simpleDialog").load("/static/epic/extention_html/simple_dialog.html");
-                });
                 reloadLoginState(false);
             </script>
-
             {% block script %}{% endblock %}
     </body>
 
