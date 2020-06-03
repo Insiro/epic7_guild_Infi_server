@@ -1,135 +1,76 @@
+{% extends 'layouts/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
 
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport"
-            content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-        <meta property="og:title" content="무한 기사단 가입문의" />
-        <meta property="og:description" content="한국서버 무한기사단의 가입문의 안내" />
-        <meta property="og:site_name" content="무한 기사단" />
-        <meta property="og:image" content="https://insiro.me/media/epic/image/guildPRHeader.jpg" />
-        <link href="{% static 'epic/css/sb-admin.css'%}" rel="stylesheet" />
-        <link href="{% static 'epic/css/addition.css'%}" rel="stylesheet" />
-        <title>무한 기사단 | 가입문의</title>
-        <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-        <link href="{% static 'epic/css/pr.css'%}" rel="stylesheet" />
+{% block meta %}
+<meta property="og:title" content="무한 기사단 가입문의" />
+<meta property="og:description" content="한국서버 무한기사단의 가입문의 안내" />
+<meta property="og:image" content="https://insiro.me/media/epic/image/guildPRHeader.jpg" />
+<title>무한 기사단 | 가입문의</title>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+{% endblock %}
 
-    </head>
+{% block css %}
+<link href="{% static 'epic/css/pr.css'%}" rel="stylesheet" />
+{% endblock %}
 
-    <body>
-        <div id="BGI"></div>
+{% block content %}
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="index">메인 페이지</a>
+        </li>
+        <li class="breadcrumb-item active" id="page_name">가입 흥보</li>
+    </ol>
+    <div class="card-body subcon mb-3 row">
+        <button class="btn col-sm-4" onclick="window.open('https://open.kakao.com/o/g16VJb8')">
+            가입 문의
+        </button>
+        <span class="col-sm-1"></span>
+        <button class="btn col-sm-4 btn-2" id="kakao-link-btn">공유 하기</button>
+    </div>
+    <div class="row card-text ml-2 col-xs-9 col-md-6">
+        <snakk style="text-align: left;">{{ con|linebreaks }}</snakk>
+    </div>
+</div>
+<a class="card-body subcon mb-3 text-center row" href="javascript:;">
+    <img class="col-sm-9" ass="" src="https://insiro.me/media/epic/image/guildPR.jpg" />
+</a>
+<br />
+{% endblock %}
 
-        <!-- dialog -->
-        <div class="modal dia" id="regist_new"></div>
-        <div class="modal dia" id="modalDialog"></div>
-        <div class="modal dia" id="Login"></div>
-        <nav class="fixed-top navbar navbar-expand static-top">
-            <a class="navbar-brand mr-1" href=".">무한기사단</a>
-
-            <!-- Navbar Search -->
-            <form action="search" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input type="text" class="form-control" name="kq" placeholder="Search for..." aria-label="Search"
-                        aria-describedby="basic-addon2" />
-                    <div class="input-group-append">
-                        <button class="btn" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <!-- Navbar -->
-            <div id="Nav"></div>
-        </nav>
-
-        <div id="wrapper">
-            <!-- Sidebar -->
-            <div class="sidebar d-none d-md-inline-block" id="sidebar"></div>
-
-            <div id="content-wrapper">
-                <div class="container-fluid">
-                    <!-- Breadcrumbs-->
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="index">메인 페이지</a>
-                        </li>
-                        <li class="breadcrumb-item active" id="page_name">가입 흥보</li>
-                    </ol>
-                    <div class="card-body subcon mb-3 row">
-                        <button class="btn col-sm-4" onclick="window.open('https://open.kakao.com/o/g16VJb8')">
-                            가입 문의
-                        </button>
-                        <span class="col-sm-1"></span>
-                        <button class="btn col-sm-4 btn-2" id="kakao-link-btn">공유 하기</button>
-                    </div>
-                    <div class="row card-text ml-2 col-xs-9 col-md-6">
-                        <snakk style="text-align: left;">{{ con|linebreaks }}</snakk>
-                    </div>
-                </div>
-                <a class="card-body subcon mb-3 text-center row" href="javascript:;">
-                    <img class="col-sm-9" ass="" src="https://insiro.me/media/epic/image/guildPR.jpg" />
-                </a>
-                <br />
-
-                <footer class="sticky-footer">
-                    <div id="footer" class="container my-auto"></div>
-                </footer>
-            </div>
-        </div>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-        <script src="/static/epic/js/sb-admin.min.js"></script>
-        <script src="/static/epic/js/authorize.js"></script>
-        <script src="/static/epic/js/addition.js"></script>
-        <script>
-            $(function () {
-                $("#regist_new").load("/static/epic/extention_html/singUpModal.html");
-                $("#Login").load("/static/epic/extention_html/log-inModal.html");
-                $("#footer").load("/static/epic/extention_html/footer.html");
-                $("#Nav").load("/static/epic/extention_html/navbar.html", () => {
-                    reloadLoginState(false);
-                });
-                $("#sidebar").load("/static/epic/extention_html/sidebar.html", function () {
-                    document.getElementById("regist").className += " active";
-                });
-                $("#modalDialog").load("/static/epic/extention_html/modal_dialog.html");
-            });
-            var tableName;
-            Kakao.init("87e0df88cc4b2f3e2191d86119d5ff15");
-            Kakao.Link.createDefaultButton({
-                container: "#kakao-link-btn",
-                objectType: "feed",
-                content: {
-                    title: "무한 기사단",
-                    description: "#한섭 #톡방운영 #랭킹_100위_내외\n아레나 첼린져 5 이상",
-                    imageUrl: "https://insiro.me/media/epic/image/guildPRHeader.jpg",
-                    link: {
-                        mobileWebUrl: "https://epic.insiro.me/about",
-                        webUrl: "https://epic.insiro.me/about",
-                    },
+{% block script %}
+<script>
+    document.getElementById("regist").className += " active";
+    Kakao.init("87e0df88cc4b2f3e2191d86119d5ff15");
+    Kakao.Link.createDefaultButton({
+        container: "#kakao-link-btn",
+        objectType: "feed",
+        content: {
+            title: "무한 기사단",
+            description: "#한섭 #톡방운영 #랭킹_100위_내외\n아레나 첼린져 5 이상",
+            imageUrl: "https://insiro.me/media/epic/image/guildPRHeader.jpg",
+            link: {
+                mobileWebUrl: "https://epic.insiro.me/about",
+                webUrl: "https://epic.insiro.me/about",
+            },
+        },
+        buttons: [
+            {
+                title: "가입문의",
+                link: {
+                    mobileWebUrl: "https://epic.insiro.me/kakao",
+                    webUrl: "https://epic.insiro.me/kakao",
                 },
-                buttons: [
-                    {
-                        title: "가입문의",
-                        link: {
-                            mobileWebUrl: "https://epic.insiro.me/kakao",
-                            webUrl: "https://epic.insiro.me/kakao",
-                        },
-                    },
-                    {
-                        title: "홈페이지",
-                        link: {
-                            mobileWebUrl: "https://epic.insiro.me/",
-                            webUrl: "https://epic.insiro.me/",
-                        },
-                    },
-                ],
-            });
-        </script>
-    </body>
-
-</html>
+            },
+            {
+                title: "홈페이지",
+                link: {
+                    mobileWebUrl: "https://epic.insiro.me/",
+                    webUrl: "https://epic.insiro.me/",
+                },
+            },
+        ],
+    });
+</script>
+{% endblock %}

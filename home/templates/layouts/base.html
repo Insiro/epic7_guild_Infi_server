@@ -1,0 +1,93 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        {% block meta %}{% endblock %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="">
+        <meta property="og.image" content="epic.insiro.me/home/png" />
+        <meta property="og:site_name" content="무한 기사단" />
+        <meta property="og:title" content="무한 기사단" />
+
+
+        <!-- Custom fonts for this template-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+        <link href="{% static 'epic/css/sb-admin.css'%}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+        <link href="{% static 'epic/css/addition.css'%}" rel="stylesheet">
+        {% block css %}{% endblock %}
+    </head>
+
+    <body id="page-top">
+        <!-- dialog -->
+        <div class="modal dia" id="regist_new"> </div>
+        <div class="modal dia" id="modalDialog"></div>
+        <div class="modal dia" id="Login">{% include 'includes/log_inModal.html' %}</div>
+
+        <nav class="fixed-top navbar navbar-expand static-top">
+
+            <a class="navbar-brand mr-1" href=".">무한기사단</a>
+
+            <!-- Navbar Search -->
+            <form action="search" class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="kq" placeholder="Search for..." aria-label="Search"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- Navbar -->
+            <div id='Nav'>
+                {% include 'includes/navbar.html' %}
+            </div>
+        </nav>
+
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <div class="sidebar d-none d-md-inline-block" id="sidebar">
+                {% include 'includes/sidebar.html' %}
+            </div>
+            <div>
+                <div id="content-wrapper">
+                    {% block content %}{% endblock %}
+                    <!-- /.container-fluid -->
+
+                    <!-- Sticky Footer -->
+                    <footer class="sticky-footer">
+                        <div id='footer' class="container my-auto">
+                            {% include 'includes/footer.html' %}
+                        </div>
+                    </footer>
+
+                </div>
+                <!-- /.content-wrapper -->
+
+            </div>
+            <!-- /#wrapper -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+            <script src="/static/epic/js/authorize.js"></script>
+            <script src="/static/epic/js/sb-admin.min.js"></script>
+            <script src="/static/epic/js/addition.js"></script>
+            <script>
+                $(function () {
+                    $("#regist_new").load("/static/epic/extention_html/singUpModal.html");
+                    $("#modalDialog").load("/static/epic/extention_html/modal_dialog.html");
+                    $("#simpleDialog").load("/static/epic/extention_html/simple_dialog.html");
+                });
+                reloadLoginState(false);
+            </script>
+
+            {% block script %}{% endblock %}
+    </body>
+
+</html>

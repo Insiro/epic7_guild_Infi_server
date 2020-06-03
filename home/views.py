@@ -117,3 +117,8 @@ def detail(request):
         data["table"] = req.get("table")
         data["id"] = req.get("id")
     return render(request, "e7detail.html", data)
+
+
+def _404(request):
+    return render(request, "404.html")
+

@@ -14,6 +14,7 @@ urlpatterns = [
     path("detail", views.detail),
     path("about", views.guildPR),
     path("e-score", views.Escore),
+    path("404", views._404),
     # epic7API
     path("info", api.info),
     path("api/authorize", api.authorize),
